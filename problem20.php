@@ -1,42 +1,35 @@
 <?php
-function isValid($s) {
-    // Stack to keep track of opening brackets
-    $stack = [];
-    // Map to hold the matching pairs
-    $map = [
-        ')' => '(',
-        '}' => '{',
-        ']' => '[',
-    ];
-
-    // Iterate through each character in the string
-    for ($i = 0; $i < strlen($s); $i++) {
-        $char = $s[$i];
-
-        // If the character is a closing bracket
-        if (isset($map[$char])) {
-            // Pop the top element from the stack if it's not empty, otherwise assign a dummy value
-            $topElement = !empty($stack) ? array_pop($stack) : '#';
-
-            // If the top element does not match the corresponding opening bracket, return false
-            if ($topElement !== $map[$char]) {
-                return false;
-            }
+function mergeSortedLists($list1, $list2) {
+    $mergedList = [];
+    $i = 0;
+    $j = 0;
+    
+    while ($i < count($list1) && $j < count($list2)) {
+        if ($list1[$i] <= $list2[$j]) {
+            $mergedList[] = $list1[$i];
+            $i++;
         } else {
-            // If it's an opening bracket, push it onto the stack
-            array_push($stack, $char);
+            $mergedList[] = $list2[$j];
+            $j++;
         }
     }
-
-    // If the stack is empty, all opening brackets were properly matched
-    return empty($stack);
+    
+    while ($i < count($list1)) {
+        $mergedList[] = $list1[$i];
+        $i++;
+    }
+    
+    while ($j < count($list2)) {
+        $mergedList[] = $list2[$j];
+        $j++;
+    }
+    
+    return $mergedList;
 }
 
 // Example usage
-$input = "({[]})";
-if (isValid($input)) {
-    echo "The string is valid.";
-} else {
-    echo "The string is not valid.";
-}
+$list1 = [1, 2, 4];
+$list2 = [1, 3, 4];
+$result = mergeSortedLists($list1, $list2);
+print_r($result);
 ?>
