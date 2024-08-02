@@ -1,19 +1,18 @@
 <?php
 function plusOne($digits) {
-    $n = count($digits);
-
-    for ($i = $n - 1; $i >= 0; $i--) {
-        if ($digits[$i] < 9) {
-            $digits[$i]++;
-            return $digits;
-        }
-        $digits[$i] = 0;
-    }
-
-    array_unshift($digits, 1);
-    return $digits;
+   $digits = array_reverse($digits);
+   print_r($digits);
+   die();
+        foreach($digits as $key=>$digit)
+            if ($digit == 9){
+                $digits[$key] = 0;
+            }else{
+                $digits[$key]++;
+                return array_reverse($digits);
+            }
+        array_push($digits,1);
+        return array_reverse($digits);
 }
-
 // Example usage:
 $digits = [1, 2, 3];
 print_r(plusOne($digits));
