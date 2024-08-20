@@ -1,8 +1,6 @@
 <?php
 function plusOne($digits) {
    $digits = array_reverse($digits);
-   print_r($digits);
-   die();
         foreach($digits as $key=>$digit)
             if ($digit == 9){
                 $digits[$key] = 0;
