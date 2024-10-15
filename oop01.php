@@ -13,12 +13,20 @@ class Friut{
 	}
 }
 class Strawberry extends Friut{
-	public function message(){
-		echo "Mamun";
+	public $weight;
+	function __construct($name,$color,$weight){
+		$this->name  =$name;
+		$this->color =$color;
+		$this->weight=$weight;
+	}
+	public function introduction(){
+		echo "This is fruit {$this->name} and color {$this->color} and Weight {$this->weight}";
 	}
 }
 
 $obj = new Friut('Banana','Yello');
+$obj1 = new Strawberry('Banana','Yello',50);
 // echo $obj ->message();
-echo $obj->intro();
+ echo $obj->intro();
+echo $obj1->introduction();
 ?>
